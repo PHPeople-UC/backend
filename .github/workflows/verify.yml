@@ -51,8 +51,8 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_USER: myapp
-          POSTGRES_DB: myapp_test
+          POSTGRES_USER: phpeople
+          POSTGRES_DB: phpeople_test
           POSTGRES_PASSWORD: ""
         ports: ["5432:5432"]
 
@@ -87,7 +87,7 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: myapp
+          PGUSER: phpeople
         run: |
           bin/rails db:setup
 
