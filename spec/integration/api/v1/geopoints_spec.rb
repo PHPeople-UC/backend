@@ -27,11 +27,12 @@ describe 'API V1 Geopoints', swagger_doc: 'v1/swagger.json' do
       parameter(name: :geopoint, in: :body)
 
       response '201', 'geopoint created' do
+        let(:property) { create(:property) }
         let(:geopoint) do
           {
             latitude: 6.66,
             longitude: 6.66,
-            property_id: 666
+            property_id: property.id
           }
         end
 
@@ -71,8 +72,7 @@ describe 'API V1 Geopoints', swagger_doc: 'v1/swagger.json' do
         let(:geopoint) do
           {
             latitude: 6.66,
-            longitude: 6.66,
-            property_id: 666
+            longitude: 6.66
           }
         end
 
