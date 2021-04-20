@@ -1,0 +1,346 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "basePath": "/api/v1",
+  "definitions": {
+    "property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "property"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Some name",
+              "x-nullable": true
+            },
+            "commune": {
+              "type": "string",
+              "example": "Some commune",
+              "x-nullable": true
+            },
+            "description": {
+              "type": "string",
+              "example": "Some description",
+              "x-nullable": true
+            }
+          },
+          "required": [
+
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "properties_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/property"
+          }
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "property_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/property"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "geopoint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "geopoint"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "float",
+              "example": 6.66,
+              "x-nullable": true
+            },
+            "longitude": {
+              "type": "float",
+              "example": 6.66,
+              "x-nullable": true
+            },
+            "property_id": {
+              "type": "integer",
+              "example": 666,
+              "x-nullable": true
+            }
+          },
+          "required": [
+
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "geopoints_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/geopoint"
+          }
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "geopoint_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/geopoint"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  "paths": {
+    "/geopoints": {
+      "get": {
+        "summary": "Retrieves Geopoints",
+        "description": "Retrieves all the geopoints",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Geopoints retrieved",
+            "schema": {
+              "$ref": "#/definitions/geopoints_collection"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates Geopoint",
+        "description": "Creates Geopoint",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "geopoint",
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "geopoint created"
+          }
+        }
+      }
+    },
+    "/geopoints/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Geopoint",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "geopoint retrieved",
+            "schema": {
+              "$ref": "#/definitions/geopoint_resource"
+            }
+          },
+          "404": {
+            "description": "invalid geopoint id"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates Geopoint",
+        "description": "Updates Geopoint",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "geopoint",
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "geopoint updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes Geopoint",
+        "produces": [
+          "application/json"
+        ],
+        "description": "Deletes specific geopoint",
+        "responses": {
+          "204": {
+            "description": "geopoint deleted"
+          },
+          "404": {
+            "description": "geopoint not found"
+          }
+        }
+      }
+    },
+    "/properties": {
+      "get": {
+        "summary": "Retrieves Properties",
+        "description": "Retrieves all the properties",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Properties retrieved",
+            "schema": {
+              "$ref": "#/definitions/properties_collection"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates Property",
+        "description": "Creates Property",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "property",
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "property created"
+          }
+        }
+      }
+    },
+    "/properties/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Property",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "property retrieved",
+            "schema": {
+              "$ref": "#/definitions/property_resource"
+            }
+          },
+          "404": {
+            "description": "invalid property id"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates Property",
+        "description": "Updates Property",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "property",
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "property updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes Property",
+        "produces": [
+          "application/json"
+        ],
+        "description": "Deletes specific property",
+        "responses": {
+          "204": {
+            "description": "property deleted"
+          },
+          "404": {
+            "description": "property not found"
+          }
+        }
+      }
+    }
+  }
+}

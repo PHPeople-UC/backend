@@ -1,6 +1,10 @@
 # Phpeople [![Circle CI](https://circleci.com/gh/platanus/phpeople.svg?style=svg)](https://circleci.com/gh/platanus/phpeople)
 This is a Rails application, initially generated using [Potassium](https://github.com/platanus/potassium) by Platanus.
 
+
+## Useful links
+
+Simple endpoints generation: [PowerAPI](https://blog.platan.us/cómo-crear-una-api-rest-en-rails-testeada-documentada-y-con-buenas-prácticas-en-1-minuto-y-54-4839009318a0)
 ## Local installation
 
 Assuming you've just cloned the repo, run this script to setup the project in your
