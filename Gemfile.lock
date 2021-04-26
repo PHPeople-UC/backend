@@ -211,6 +211,7 @@ GEM
     json-schema (2.8.1)
       addressable (>= 2.4)
     jsonapi-renderer (0.2.2)
+    jwt (2.2.3)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -510,6 +511,7 @@ DEPENDENCIES
   guard-rspec
   heroku-stage
   jbuilder (~> 2.7)
+  jwt
   listen
   pg
   power-types
