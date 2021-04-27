@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   scope path: '/api' do
     api_version(module: 'Api::V1', path: { value: 'v1' }, defaults: { format: 'json' }) do
+      resources :property_services
       resources :properties
       resources :geopoints
       devise_for :users, controllers: { sessions: :sessions, registrations: :registrations },
