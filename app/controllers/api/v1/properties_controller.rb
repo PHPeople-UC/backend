@@ -22,14 +22,15 @@ class Api::V1::PropertiesController < Api::V1::BaseController
   private
 
   def property
-    @property ||= Property.find_by!(id: params[:id])
+    @property ||= Property.find(params[:id])
   end
 
   def property_params
     params.require(:property).permit(
       :name,
       :commune,
-      :description
+      :description,
+      :user_id
     )
   end
 end

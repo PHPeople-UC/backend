@@ -3,6 +3,11 @@ class Property < ApplicationRecord
   has_many :property_services, inverse_of: :property
   has_many_attached :images
 
+  belongs_to :user, inverse_of: :properties
+
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
+  validates :size, numericality: { greater_than_or_equal_to: 0 }
+
   # nombre
   # comuna
   # geopoints (Creo que postgis) -> PostGios
@@ -27,4 +32,13 @@ end
 #  price       :float
 #  size        :float
 #  address     :text
+#  user_id     :bigint(8)        not null
+#
+# Indexes
+#
+#  index_properties_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
