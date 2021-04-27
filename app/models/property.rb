@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   has_many :geopoints, inverse_of: :property
+  has_many :property_services, inverse_of: :property
   has_many_attached :images
 
   # nombre
@@ -23,4 +24,7 @@ end
 #  active      :boolean          default(TRUE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  price       :float
+#  size        :float
+#  address     :text
 #

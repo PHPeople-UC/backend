@@ -5,6 +5,10 @@ class Api::V1::PropertySerializer < ActiveModel::Serializer
     :name,
     :commune,
     :description,
-    :geopoints
+    :price,
+    :size,
+    :address,
+    :geopoints,
+    :property_services
   )
 end
