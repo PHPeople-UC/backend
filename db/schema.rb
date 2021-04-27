@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_160105) do
+ActiveRecord::Schema.define(version: 2021_04_27_004148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,18 @@ ActiveRecord::Schema.define(version: 2021_04_26_160105) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "price"
+    t.float "size"
+    t.text "address"
+  end
+
+  create_table "property_services", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "property_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_id"], name: "index_property_services_on_property_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -114,4 +126,5 @@ ActiveRecord::Schema.define(version: 2021_04_26_160105) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "geopoints", "properties"
+  add_foreign_key "property_services", "properties"
 end
