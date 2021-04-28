@@ -1,6 +1,7 @@
 class Api::V1::PropertyServicesController < Api::V1::BaseController
   def index
-    respond_with paginate(filtered_collection(PropertyService.all))
+    @services = property.property_services
+    respond_with paginate(filtered_collection(@services))
   end
 
   def show
@@ -8,7 +9,7 @@ class Api::V1::PropertyServicesController < Api::V1::BaseController
   end
 
   def create
-    respond_with PropertyService.create!(property_service_params)
+    respond_with property.property_services.create!(property_service_params)
   end
 
   def update
@@ -21,15 +22,18 @@ class Api::V1::PropertyServicesController < Api::V1::BaseController
 
   private
 
+  def property
+    @property ||= Property.find(params[:property_id])
+  end
+
   def property_service
-    @property_service ||= PropertyService.find(params[:id])
+    @property_service ||= property.property_services.find(params[:id])
   end
 
   def property_service_params
     params.require(:property_service).permit(
       :name,
-      :description,
-      :property_id
+      :description
     )
   end
 end
