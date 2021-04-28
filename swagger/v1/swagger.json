@@ -6,6 +6,57 @@
   },
   "basePath": "/api/v1",
   "definitions": {
+    "property_service": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "property_service"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Some name",
+              "x-nullable": true
+            },
+            "description": {
+              "type": "string",
+              "example": "Some description",
+              "x-nullable": true
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "property_services_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/property_service"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "property_service_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/property_service"
+        }
+      },
+      "required": ["data"]
+    },
     "property": {
       "type": "object",
       "properties": {
@@ -34,18 +85,39 @@
               "type": "string",
               "example": "Some description",
               "x-nullable": true
+            },
+            "price": {
+              "type": "float",
+              "example": "10000",
+              "x-nullable": true
+            },
+            "size": {
+              "type": "float",
+              "example": "1000",
+              "x-nullable": true
+            },
+            "address": {
+              "type": "string",
+              "example": "My home address 123, My Invented Commune, My invented Country",
+              "x-nullable": true
+            },
+            "property_services": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/property_service"
+              }
+            },
+            "geopoints": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/geopoint"
+              }
             }
           },
-          "required": [
-
-          ]
+          "required": []
         }
       },
-      "required": [
-        "id",
-        "type",
-        "attributes"
-      ]
+      "required": ["id", "type", "attributes"]
     },
     "properties_collection": {
       "type": "object",
@@ -57,9 +129,7 @@
           }
         }
       },
-      "required": [
-        "data"
-      ]
+      "required": ["data"]
     },
     "property_resource": {
       "type": "object",
@@ -68,9 +138,7 @@
           "$ref": "#/definitions/property"
         }
       },
-      "required": [
-        "data"
-      ]
+      "required": ["data"]
     },
     "geopoint": {
       "type": "object",
@@ -102,16 +170,10 @@
               "x-nullable": true
             }
           },
-          "required": [
-
-          ]
+          "required": []
         }
       },
-      "required": [
-        "id",
-        "type",
-        "attributes"
-      ]
+      "required": ["id", "type", "attributes"]
     },
     "geopoints_collection": {
       "type": "object",
@@ -123,9 +185,7 @@
           }
         }
       },
-      "required": [
-        "data"
-      ]
+      "required": ["data"]
     },
     "geopoint_resource": {
       "type": "object",
@@ -134,9 +194,7 @@
           "$ref": "#/definitions/geopoint"
         }
       },
-      "required": [
-        "data"
-      ]
+      "required": ["data"]
     }
   },
   "paths": {
@@ -144,9 +202,7 @@
       "get": {
         "summary": "Retrieves Geopoints",
         "description": "Retrieves all the geopoints",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Geopoints retrieved",
@@ -159,12 +215,8 @@
       "post": {
         "summary": "Creates Geopoint",
         "description": "Creates Geopoint",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "geopoint",
@@ -189,9 +241,7 @@
       ],
       "get": {
         "summary": "Retrieves Geopoint",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "geopoint retrieved",
@@ -207,12 +257,8 @@
       "put": {
         "summary": "Updates Geopoint",
         "description": "Updates Geopoint",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "geopoint",
@@ -227,9 +273,7 @@
       },
       "delete": {
         "summary": "Deletes Geopoint",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "description": "Deletes specific geopoint",
         "responses": {
           "204": {
@@ -245,9 +289,7 @@
       "get": {
         "summary": "Retrieves Properties",
         "description": "Retrieves all the properties",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Properties retrieved",
@@ -260,12 +302,8 @@
       "post": {
         "summary": "Creates Property",
         "description": "Creates Property",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "property",
@@ -290,9 +328,7 @@
       ],
       "get": {
         "summary": "Retrieves Property",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "property retrieved",
@@ -308,12 +344,8 @@
       "put": {
         "summary": "Updates Property",
         "description": "Updates Property",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "property",
@@ -328,9 +360,7 @@
       },
       "delete": {
         "summary": "Deletes Property",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "description": "Deletes specific property",
         "responses": {
           "204": {
@@ -338,6 +368,93 @@
           },
           "404": {
             "description": "property not found"
+          }
+        }
+      }
+    },
+    "/property_services": {
+      "get": {
+        "summary": "Retrieves Property Services",
+        "description": "Retrieves all the property_services",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Property Services retrieved",
+            "schema": {
+              "$ref": "#/definitions/property_services_collection"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates Property Service",
+        "description": "Creates Property Service",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property_service",
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "property_service created"
+          }
+        }
+      }
+    },
+    "/property_services/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Property Service",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "property_service retrieved",
+            "schema": {
+              "$ref": "#/definitions/property_service_resource"
+            }
+          },
+          "404": {
+            "description": "invalid property_service id"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates Property Service",
+        "description": "Updates Property Service",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property_service",
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "property_service updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes Property Service",
+        "produces": ["application/json"],
+        "description": "Deletes specific property_service",
+        "responses": {
+          "204": {
+            "description": "property_service deleted"
+          },
+          "404": {
+            "description": "property_service not found"
           }
         }
       }

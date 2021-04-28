@@ -1,6 +1,7 @@
 class Api::V1::GeopointsController < Api::V1::BaseController
   def index
-    respond_with paginate(filtered_collection(Geopoint.all))
+    @geopoints = property.geopoints
+    respond_with paginate(filtered_collection(@geopoints))
   end
 
   def show
@@ -8,7 +9,7 @@ class Api::V1::GeopointsController < Api::V1::BaseController
   end
 
   def create
-    respond_with Geopoint.create!(geopoint_params)
+    respond_with property.geopoints.create!(geopoint_params)
   end
 
   def update
@@ -21,15 +22,18 @@ class Api::V1::GeopointsController < Api::V1::BaseController
 
   private
 
+  def property
+    @property ||= Property.find(params[:property_id])
+  end
+
   def geopoint
-    @geopoint ||= Geopoint.find_by!(id: params[:id])
+    @geopoint ||= property.geopoints.find(params[:id])
   end
 
   def geopoint_params
     params.require(:geopoint).permit(
       :latitude,
-      :longitude,
-      :property_id
+      :longitude
     )
   end
 end

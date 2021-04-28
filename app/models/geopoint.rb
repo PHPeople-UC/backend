@@ -1,5 +1,8 @@
 class Geopoint < ApplicationRecord
   belongs_to :property, inverse_of: :geopoints
+
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 end
 
 # == Schema Information

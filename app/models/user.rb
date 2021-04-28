@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :name, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z]+\z/ }
   validates :last_name, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z]+\z/ }
 
+  has_many :properties, inverse_of: :user
+
   def generate_jwt
     JWT.encode({ id: id,
                  exp: 60.days.from_now.to_i },
