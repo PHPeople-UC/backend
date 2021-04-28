@@ -1,5 +1,8 @@
 class PropertyService < ApplicationRecord
   belongs_to :property, inverse_of: :property_services
+
+  validates :name, presence: true
+  validates :description, presence: true
 end
 
 # == Schema Information

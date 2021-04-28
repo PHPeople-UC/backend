@@ -5,8 +5,10 @@ class Property < ApplicationRecord
 
   belongs_to :user, inverse_of: :properties
 
-  validates :price, numericality: { greater_than_or_equal_to: 0 }
-  validates :size, numericality: { greater_than_or_equal_to: 0 }
+  validates :name, presence: true
+  validates :commune, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :size, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   # nombre
   # comuna
