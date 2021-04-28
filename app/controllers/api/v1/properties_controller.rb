@@ -30,6 +30,10 @@ class Api::V1::PropertiesController < Api::V1::BaseController
       :name,
       :commune,
       :description,
+      :active,
+      :price,
+      :size,
+      :address,
       :user_id
     )
   end
