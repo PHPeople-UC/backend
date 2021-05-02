@@ -1,10 +1,10 @@
 class Api::V1::PropertiesController < Api::V1::BaseController
   def index
-    respond_with paginate(filtered_collection(Property.all))
+    respond_with paginate(filtered_collection(Property.all)), deep: params[:deep].present?
   end
 
   def show
-    respond_with property
+    respond_with property, deep: params[:deep].present?
   end
 
   def create
@@ -12,7 +12,7 @@ class Api::V1::PropertiesController < Api::V1::BaseController
   end
 
   def update
-    respond_with property.update!(property_params)
+    respond_with property.update!(property_params), deep: params[:deep].present?
   end
 
   def destroy

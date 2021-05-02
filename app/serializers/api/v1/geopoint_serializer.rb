@@ -1,4 +1,4 @@
-class Api::V1::GeopointSerializer < ActiveModel::Serializer
+class Api::V1::GeopointSerializer < BaseSerializer
   type :geopoint
 
   attributes(
@@ -6,4 +6,6 @@ class Api::V1::GeopointSerializer < ActiveModel::Serializer
     :longitude,
     :property_id
   )
+
+  attribute :property_id, unless: :with_parent?
 end
