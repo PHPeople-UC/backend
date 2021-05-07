@@ -9,15 +9,6 @@ class Property < ApplicationRecord
   validates :commune, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :size, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
-  # nombre
-  # comuna
-  # geopoints (Creo que postgis) -> PostGios
-  # archivos adjunto has many
-  # owner
-  # descripcion
-
-  # modelo de archivos
 end
 
 # == Schema Information
