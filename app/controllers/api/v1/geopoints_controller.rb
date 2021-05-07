@@ -1,4 +1,6 @@
 class Api::V1::GeopointsController < Api::V1::BaseController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @geopoints = property.geopoints
     respond_with paginate(filtered_collection(@geopoints))
