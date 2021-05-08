@@ -1,4 +1,6 @@
 class Api::V1::PropertyServicesController < Api::V1::BaseController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @services = property.property_services
     respond_with paginate(filtered_collection(@services))

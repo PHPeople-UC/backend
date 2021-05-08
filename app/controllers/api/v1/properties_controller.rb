@@ -1,4 +1,6 @@
 class Api::V1::PropertiesController < Api::V1::BaseController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     properties = if params[:commune].present?
                    Property.where(commune: [params[:commune].split(",")])
