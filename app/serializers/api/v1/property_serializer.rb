@@ -5,6 +5,7 @@ class Api::V1::PropertySerializer < BaseSerializer
     :name,
     :commune,
     :description,
+    :owner,
     :price,
     :size,
     :address
@@ -25,5 +26,9 @@ class Api::V1::PropertySerializer < BaseSerializer
       serializer = Api::V1::PropertyServiceSerializer.new(property_service, with_parent: true)
       puts_association(serializer)
     end
+  end
+
+  def owner
+    puts_association(UserSerializer.new(object.user))
   end
 end
