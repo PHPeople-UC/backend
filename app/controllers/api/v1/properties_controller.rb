@@ -1,6 +1,11 @@
 class Api::V1::PropertiesController < Api::V1::BaseController
   def index
-    respond_with paginate(filtered_collection(Property.all)), deep: params[:deep].present?
+    properties = if params[:commune].present?
+                   Property.where(commune: [params[:commune].split(",")])
+                 else
+                   Property.all
+                 end
+    respond_with paginate(filtered_collection(properties)), deep: params[:deep].present?
   end
 
   def show
