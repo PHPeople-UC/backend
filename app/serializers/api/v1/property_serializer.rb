@@ -6,13 +6,21 @@ class Api::V1::PropertySerializer < BaseSerializer
     :commune,
     :description,
     :owner,
-    :price,
-    :size,
     :address
   )
 
   attribute :geopoints, if: :deep?
   attribute :property_services, if: :deep?
+  attribute :size
+  attribute :price
+
+  def size
+    { value: object.size, unit: object.size_unit }
+  end
+
+  def price
+    { value: object.price, unit: object.price_unit }
+  end
 
   def geopoints
     object.geopoints.map do |geopoint|

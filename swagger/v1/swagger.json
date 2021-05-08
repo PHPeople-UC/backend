@@ -87,14 +87,34 @@
               "x-nullable": true
             },
             "price": {
-              "type": "float",
-              "example": "10000",
-              "x-nullable": true
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "float",
+                  "example": 1000,
+                  "x-nullable": false
+                },
+                "unit": {
+                  "type": "string",
+                  "example": "uf",
+                  "x-nullable": false
+                }
+              }
             },
             "size": {
-              "type": "float",
-              "example": "1000",
-              "x-nullable": true
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "float",
+                  "example": 1000,
+                  "x-nullable": false
+                },
+                "unit": {
+                  "type": "string",
+                  "example": "meters",
+                  "x-nullable": false
+                }
+              }
             },
             "address": {
               "type": "string",
