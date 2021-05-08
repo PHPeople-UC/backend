@@ -10,8 +10,11 @@ class Property < ApplicationRecord
 
   validates :name, presence: true
   validates :commune, presence: true
+
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :price_unit, inclusion: { in: :price_unit }
   validates :size, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :size_unit, inclusion: { in: :size_unit }
 end
 
 # == Schema Information
