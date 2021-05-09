@@ -9,10 +9,10 @@ class Api::V1::PropertySerializer < BaseSerializer
     :address
   )
 
-  attribute :geopoints, if: :deep?
-  attribute :property_services, if: :deep?
   attribute :size
   attribute :price
+  attribute :geopoints, if: :deep?
+  attribute :property_services, if: :deep?
 
   def size
     { value: object.size, unit: object.size_unit }
