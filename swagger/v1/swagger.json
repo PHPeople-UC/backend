@@ -31,10 +31,16 @@
               "x-nullable": true
             }
           },
-          "required": []
+          "required": [
+
+          ]
         }
       },
-      "required": ["id", "type", "attributes"]
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
     },
     "property_services_collection": {
       "type": "object",
@@ -46,7 +52,9 @@
           }
         }
       },
-      "required": ["data"]
+      "required": [
+        "data"
+      ]
     },
     "property_service_resource": {
       "type": "object",
@@ -55,7 +63,9 @@
           "$ref": "#/definitions/property_service"
         }
       },
-      "required": ["data"]
+      "required": [
+        "data"
+      ]
     },
     "property": {
       "type": "object",
@@ -73,71 +83,58 @@
           "properties": {
             "name": {
               "type": "string",
-              "example": "Some name",
-              "x-nullable": true
+              "example": "Property 1"
             },
             "commune": {
               "type": "string",
-              "example": "Some commune",
-              "x-nullable": true
+              "example": "Santiago"
             },
             "description": {
               "type": "string",
-              "example": "Some description",
-              "x-nullable": true
+              "example": "A very nice place"
+            },
+            "active": {
+              "type": "boolean",
+              "example": true
             },
             "price": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "float",
-                  "example": 1000,
-                  "x-nullable": false
-                },
-                "unit": {
-                  "type": "string",
-                  "example": "uf",
-                  "x-nullable": false
-                }
-              }
+              "type": "float",
+              "example": 1000
+            },
+            "price_unit": {
+              "type": "string",
+              "example": "UF"
             },
             "size": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "float",
-                  "example": 1000,
-                  "x-nullable": false
-                },
-                "unit": {
-                  "type": "string",
-                  "example": "meters",
-                  "x-nullable": false
-                }
-              }
+              "type": "float",
+              "example": 1000
+            },
+            "size_unit": {
+              "type": "string",
+              "example": "hectare"
             },
             "address": {
               "type": "string",
-              "example": "My home address 123, My Invented Commune, My invented Country",
-              "x-nullable": true
-            },
-            "property_services": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/property_service"
-              }
-            },
-            "geopoints": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/geopoint"
-              }
+              "example": "100 example st"
             }
           },
-          "required": []
+          "required": [
+            "name",
+            "commune",
+            "description",
+            "price",
+            "price_unit",
+            "size",
+            "size_unit",
+            "address"
+          ]
         }
       },
-      "required": ["id", "type", "attributes"]
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
     },
     "properties_collection": {
       "type": "object",
@@ -149,7 +146,9 @@
           }
         }
       },
-      "required": ["data"]
+      "required": [
+        "data"
+      ]
     },
     "property_resource": {
       "type": "object",
@@ -158,7 +157,9 @@
           "$ref": "#/definitions/property"
         }
       },
-      "required": ["data"]
+      "required": [
+        "data"
+      ]
     },
     "geopoint": {
       "type": "object",
@@ -190,10 +191,16 @@
               "x-nullable": true
             }
           },
-          "required": []
+          "required": [
+
+          ]
         }
       },
-      "required": ["id", "type", "attributes"]
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
     },
     "geopoints_collection": {
       "type": "object",
@@ -205,7 +212,9 @@
           }
         }
       },
-      "required": ["data"]
+      "required": [
+        "data"
+      ]
     },
     "geopoint_resource": {
       "type": "object",
@@ -214,7 +223,9 @@
           "$ref": "#/definitions/geopoint"
         }
       },
-      "required": ["data"]
+      "required": [
+        "data"
+      ]
     }
   },
   "paths": {
@@ -222,7 +233,9 @@
       "get": {
         "summary": "Retrieves Geopoints",
         "description": "Retrieves all the geopoints",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "Geopoints retrieved",
@@ -235,8 +248,12 @@
       "post": {
         "summary": "Creates Geopoint",
         "description": "Creates Geopoint",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "geopoint",
@@ -261,7 +278,9 @@
       ],
       "get": {
         "summary": "Retrieves Geopoint",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "geopoint retrieved",
@@ -277,8 +296,12 @@
       "put": {
         "summary": "Updates Geopoint",
         "description": "Updates Geopoint",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "geopoint",
@@ -293,7 +316,9 @@
       },
       "delete": {
         "summary": "Deletes Geopoint",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "description": "Deletes specific geopoint",
         "responses": {
           "204": {
@@ -308,8 +333,24 @@
     "/properties": {
       "get": {
         "summary": "Retrieves Properties",
-        "description": "Retrieves all the properties",
-        "produces": ["application/json"],
+        "description": "Retrieves all the properties.\nYou can pass the URL param 'commune' to recieve back only the properties that belong to that commune. You can also pass multiple communes separated by commas.\nYou can pass the URL param 'deep' set to true to receive a nested response with each propertie's geopoints and services.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "commune",
+            "in": "query",
+            "example": "Santiago",
+            "description": "Used to filter by commune. You can filter by multiple communes separating them by commas"
+          },
+          {
+            "name": "deep",
+            "in": "query",
+            "example": "true",
+            "description": "If this params is present, you receiver geopoints & services in the answer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Properties retrieved",
@@ -321,13 +362,86 @@
       },
       "post": {
         "summary": "Creates Property",
-        "description": "Creates Property",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "description": "Creates Property. This call need a Bearer Authentication with a user session JWT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "property",
-            "in": "body"
+            "name": "property_params",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "property"
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Property 1"
+                    },
+                    "commune": {
+                      "type": "string",
+                      "example": "Santiago"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "A very nice place"
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "price": {
+                      "type": "float",
+                      "example": 1000
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "example": "UF"
+                    },
+                    "size": {
+                      "type": "float",
+                      "example": 1000
+                    },
+                    "size_unit": {
+                      "type": "string",
+                      "example": "hectare"
+                    },
+                    "address": {
+                      "type": "string",
+                      "example": "100 example st"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "commune",
+                    "description",
+                    "price",
+                    "price_unit",
+                    "size",
+                    "size_unit",
+                    "address"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "attributes"
+              ]
+            }
           }
         ],
         "responses": {
@@ -348,7 +462,18 @@
       ],
       "get": {
         "summary": "Retrieves Property",
-        "produces": ["application/json"],
+        "description": "You can pass the URL param 'deep' set to true to receive a nested response with each propertie's geopoints and services.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "deep",
+            "in": "query",
+            "example": "true",
+            "description": "If this params is present, you receiver geopoints & services in the answer"
+          }
+        ],
         "responses": {
           "200": {
             "description": "property retrieved",
@@ -363,9 +488,13 @@
       },
       "put": {
         "summary": "Updates Property",
-        "description": "Updates Property",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "description": "Updates Property. This call need a Bearer Authentication with a user session JWT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "property",
@@ -380,8 +509,10 @@
       },
       "delete": {
         "summary": "Deletes Property",
-        "produces": ["application/json"],
-        "description": "Deletes specific property",
+        "produces": [
+          "application/json"
+        ],
+        "description": "Deletes specific property. This call need a Bearer Authentication with a user session JWT",
         "responses": {
           "204": {
             "description": "property deleted"
@@ -396,7 +527,9 @@
       "get": {
         "summary": "Retrieves Property Services",
         "description": "Retrieves all the property_services",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "Property Services retrieved",
@@ -409,8 +542,12 @@
       "post": {
         "summary": "Creates Property Service",
         "description": "Creates Property Service",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "property_service",
@@ -435,7 +572,9 @@
       ],
       "get": {
         "summary": "Retrieves Property Service",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "property_service retrieved",
@@ -451,8 +590,12 @@
       "put": {
         "summary": "Updates Property Service",
         "description": "Updates Property Service",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "property_service",
@@ -467,7 +610,9 @@
       },
       "delete": {
         "summary": "Deletes Property Service",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "description": "Deletes specific property_service",
         "responses": {
           "204": {
@@ -475,6 +620,102 @@
           },
           "404": {
             "description": "property_service not found"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Sign up",
+        "description": "Sign up a new user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "registration_params",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "jero@example.com"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "jero"
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "example": "salazar"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "123456"
+                    },
+                    "password_confirmation": {
+                      "type": "string",
+                      "example": "123456"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "email",
+                "name",
+                "last_name",
+                "password",
+                "password_confirmation"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "user created"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "User login",
+        "description": "Login user. This method returns the user info + a JWT for authentication",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "session_params",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "jero@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123456"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "logged in"
           }
         }
       }
