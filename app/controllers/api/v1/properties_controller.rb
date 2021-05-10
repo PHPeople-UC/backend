@@ -15,7 +15,7 @@ class Api::V1::PropertiesController < Api::V1::BaseController
   end
 
   def create
-    respond_with Property.create!(property_params)
+    respond_with current_user.properties.create!(property_params)
   end
 
   def update
@@ -39,9 +39,10 @@ class Api::V1::PropertiesController < Api::V1::BaseController
       :description,
       :active,
       :price,
+      :price_unit,
       :size,
-      :address,
-      :user_id
+      :size_unit,
+      :address
     )
   end
 end

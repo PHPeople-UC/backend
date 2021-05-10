@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_174053) do
+ActiveRecord::Schema.define(version: 2021_05_08_232636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 2021_05_04_174053) do
     t.float "size"
     t.text "address"
     t.bigint "user_id", null: false
+    t.integer "size_unit", default: 0
+    t.integer "price_unit", default: 0
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 

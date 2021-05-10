@@ -1,4 +1,7 @@
 class Property < ApplicationRecord
+  enum size_unit: { meters: 0, hectare: 1 }
+  enum price_unit: { uf: 0, clp: 1 }
+
   has_many :geopoints, inverse_of: :property
   has_many :property_services, inverse_of: :property
   has_many_attached :images
@@ -7,8 +10,11 @@ class Property < ApplicationRecord
 
   validates :name, presence: true
   validates :commune, presence: true
+
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :price_unit, inclusion: { in: :price_unit }
   validates :size, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :size_unit, inclusion: { in: :size_unit }
 end
 
 # == Schema Information
@@ -26,6 +32,8 @@ end
 #  size        :float
 #  address     :text
 #  user_id     :bigint(8)        not null
+#  size_unit   :integer
+#  price_unit  :integer
 #
 # Indexes
 #
