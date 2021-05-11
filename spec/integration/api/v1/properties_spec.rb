@@ -50,7 +50,7 @@ describe 'API V1 Properties', swagger_doc: 'v1/swagger.json' do
           property: {
             type: :object,
             properties: {
-              name: { type: :string, example: "Property 1" },
+              name: { type: :string, example: "Example Property" },
               commune: { type: :string, example: "Santiago" },
               description: { type: :string, example: "A very nice place" },
               active: { type: :boolean, example: true },
@@ -62,18 +62,11 @@ describe 'API V1 Properties', swagger_doc: 'v1/swagger.json' do
             }
           }
         },
-        required: ['name', 'commune', 'description', 'price', 'price_unit', 'size', 'size_unit', 'address']
+        required: ['name', 'commune', 'description', 'price', 'price_unit', 'size', 'size_unit',
+                   'address']
       }
 
       response '201', 'property created' do
-        let(:property) do
-          {
-            name: 'Some name',
-            commune: 'Some commune',
-            description: 'Some description'
-          }
-        end
-
         run_test!
       end
     end
