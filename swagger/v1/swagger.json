@@ -36,6 +36,24 @@
       },
       "required": ["id", "type", "attributes"]
     },
+    "property_service_in": {
+      "type": "object",
+      "properties": {
+        "property_service": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "some creative name of a property service"
+            },
+            "description": {
+              "type": "string",
+              "example": "some creative description which I dont have"
+            }
+          }
+        }
+      }
+    },
     "property_services_collection": {
       "type": "object",
       "properties": {
@@ -169,6 +187,18 @@
       },
       "required": ["id", "type", "attributes"]
     },
+    "geopoint_in": {
+      "type": "object",
+      "properties": {
+        "geopoint": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "float", "example": 0.001 },
+            "longitude": { "type": "float", "example": 0.001 }
+          }
+        }
+      }
+    },
     "geopoints_collection": {
       "type": "object",
       "properties": {
@@ -224,7 +254,7 @@
             "name": "property_params",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/geopoint"
+              "$ref": "#/definitions/geopoint_in"
             }
           }
         ],
@@ -279,16 +309,7 @@
             "name": "property_params",
             "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "geopoint": {
-                  "type": "object",
-                  "properties": {
-                    "latitude": { "type": "float", "example": 0.001 },
-                    "longitude": { "type": "float", "example": 0.001 }
-                  }
-                }
-              }
+              "$ref": "#/definitions/geopoint_in"
             },
             "required": ["id", "type", "attributes"]
           }
@@ -302,7 +323,7 @@
       "delete": {
         "summary": "Deletes Geopoint",
         "produces": ["application/json"],
-        "description": "Deletes specific geopoint",
+        "description": "Deletes specific geopoint. This call needs a Bearer Authentication with a user session JWT",
         "responses": {
           "204": {
             "description": "geopoint deleted"
@@ -480,9 +501,17 @@
       }
     },
     "/properties/{:id}/property_services": {
+      "parameters": [
+        {
+          "name": "id of property",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
       "get": {
         "summary": "Retrieves Property Services",
-        "description": "Retrieves all the property_services",
+        "description": "Retrieves all the property_services. This call does not need a Bearer Authentication with a user session JWT",
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -495,13 +524,16 @@
       },
       "post": {
         "summary": "Creates Property Service",
-        "description": "Creates Property Service",
+        "description": "Creates Property Service. This call needs a Bearer Authentication with a user session JWT",
         "consumes": ["application/json"],
         "produces": ["application/json"],
         "parameters": [
           {
             "name": "property_service",
-            "in": "body"
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/property_service_in"
+            }
           }
         ],
         "responses": {
@@ -514,7 +546,13 @@
     "/properties/{:id}/property_services/{id}": {
       "parameters": [
         {
-          "name": "id",
+          "name": "id of property",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "id of property service",
           "in": "path",
           "type": "integer",
           "required": true
@@ -522,6 +560,7 @@
       ],
       "get": {
         "summary": "Retrieves Property Service",
+        "description": "Retrieves a specific property service. This call does not need a Bearer Authentication with a user session JWT",
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -537,13 +576,16 @@
       },
       "put": {
         "summary": "Updates Property Service",
-        "description": "Updates Property Service",
+        "description": "Updates Property Service. This call needs a Bearer Authentication with a user session JWT",
         "consumes": ["application/json"],
         "produces": ["application/json"],
         "parameters": [
           {
             "name": "property_service",
-            "in": "body"
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/property_service_in"
+            }
           }
         ],
         "responses": {
@@ -555,7 +597,7 @@
       "delete": {
         "summary": "Deletes Property Service",
         "produces": ["application/json"],
-        "description": "Deletes specific property_service",
+        "description": "Deletes specific property_service. This call needs a Bearer Authentication with a user session JWT",
         "responses": {
           "204": {
             "description": "property_service deleted"
