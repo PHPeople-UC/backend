@@ -6,9 +6,15 @@ PROPERTY_SCHEMA = {
     attributes: {
       type: :object,
       properties: {
-        name: { type: :string, example: 'Some name', 'x-nullable': true },
-        commune: { type: :string, example: 'Some commune', 'x-nullable': true },
-        description: { type: :string, example: 'Some description', 'x-nullable': true }
+        name: { type: :string, example: "Property 1" },
+        commune: { type: :string, example: "Santiago" },
+        description: { type: :string, example: "A very nice place" },
+        active: { type: :boolean, example: true },
+        price: { type: :float, example: 1000 },
+        price_unit: { type: :string, example: "UF" },
+        size: { type: :float, example: 1000 },
+        size_unit: { type: :string, example: "hectare" },
+        address: { type: :string, example: "100 example st" }
       },
       required: []
     }
