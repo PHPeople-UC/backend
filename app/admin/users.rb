@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   actions :all, except: [:new, :create]
-  permit_params :name, :last_name
+  permit_params :name, :last_name, :email, role_ids: []
 
   filter :email
   filter :name
