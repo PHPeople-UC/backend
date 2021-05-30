@@ -5,10 +5,15 @@ class UserSerializer < BaseSerializer
     :id,
     :name,
     :last_name,
-    :email
+    :email,
+    :roles
   )
 
   attribute :generate_jwt, if: :with_token?
+
+  def roles
+    object.roles.map(&:name)
+  end
 
   def with_token?
     @instance_options[:with_token]
