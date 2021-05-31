@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dnde04fqx
+  api_key: '214829584292559'
+  api_secret: 3qn3eAjrlA55iPTzgYuqe79WIBw
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dnde04fqx
+  api_key: '214829584292559'
+  api_secret: 3qn3eAjrlA55iPTzgYuqe79WIBw
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dnde04fqx
+  api_key: '214829584292559'
+  api_secret: 3qn3eAjrlA55iPTzgYuqe79WIBw
+  enhance_image_tag: true
+  static_file_support: false

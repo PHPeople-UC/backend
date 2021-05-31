@@ -32,8 +32,10 @@ end
 #  size        :float
 #  address     :text
 #  user_id     :bigint(8)        not null
-#  size_unit   :integer
-#  price_unit  :integer
+#  size_unit   :integer          default("meters")
+#  price_unit  :integer          default("uf")
+#  link        :text
+#  caption     :text
 #
 # Indexes
 #

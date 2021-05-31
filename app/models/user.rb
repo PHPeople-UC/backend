@@ -31,6 +31,8 @@ end
 #  updated_at             :datetime         not null
 #  name                   :string
 #  last_name              :string
+#  link                   :text
+#  caption                :text
 #
 # Indexes
 #
