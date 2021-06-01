@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         resources :property_services
         resources :geopoints
       end
+      resources :calendar_schedules
       devise_for :users, controllers: { sessions: :sessions, registrations: :registrations },
                          path_names: { sign_in: :login }
     end

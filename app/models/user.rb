@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z]+\z/ }
 
   has_many :properties, dependent: :delete_all, inverse_of: :user
+  has_many :calendar_schedules, dependent: :delete_all, inverse_of: :user
 
   def generate_jwt
     JWT.encode({ id: id,

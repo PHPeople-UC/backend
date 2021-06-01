@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_232636) do
+ActiveRecord::Schema.define(version: 2021_06_01_020559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 2021_05_08_232636) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "calendar_schedules", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_id"], name: "index_calendar_schedules_on_property_id"
+    t.index ["user_id"], name: "index_calendar_schedules_on_user_id"
   end
 
   create_table "geopoints", force: :cascade do |t|
@@ -129,6 +140,8 @@ ActiveRecord::Schema.define(version: 2021_05_08_232636) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "calendar_schedules", "properties"
+  add_foreign_key "calendar_schedules", "users"
   add_foreign_key "geopoints", "properties"
   add_foreign_key "properties", "users"
   add_foreign_key "property_services", "properties"
