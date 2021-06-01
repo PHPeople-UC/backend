@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :properties, dependent: :delete_all, inverse_of: :user
   has_many :calendar_schedules, dependent: :delete_all, inverse_of: :user
 
+  after_create do
+    add_role :unconfirmed_seller
+  end
+
   def generate_jwt
     JWT.encode({ id: id,
                  exp: 60.days.from_now.to_i },
