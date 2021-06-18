@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :properties, dependent: :delete_all, inverse_of: :user
   has_many :calendar_schedules, dependent: :delete_all, inverse_of: :user
+  has_many :off_schedules, dependent: :delete_all, inverse_of: :user
 
   def generate_jwt
     JWT.encode({ id: id,
