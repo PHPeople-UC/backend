@@ -6,6 +6,133 @@
   },
   "basePath": "/api/v1",
   "definitions": {
+    "calendar_schedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "property_service"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "day_of_week": {
+              "type": "integer",
+              "example": 1,
+              "x-nullable": false
+            },
+            "start_hour": {
+              "type": "integer",
+              "example": 21,
+              "x-nullable": false
+            },
+            "end_hour": {
+              "type": "integer",
+              "example": 23,
+              "x-nullable": false
+            },
+            "full_day": {
+              "type": "boolean",
+              "example": false,
+              "x-nullable": true
+            },
+            "user_id": {
+              "type": "integer",
+              "example": 1,
+              "x-nullable": false
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "calendar_schedules_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/calendar_schedule"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "calendar_schedule_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/calendar_schedule"
+        }
+      },
+      "required": ["data"]
+    },
+    "off_schedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "of_schedule"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "day_of_week": {
+              "type": "integer",
+              "example": "0",
+              "x-nullable": false
+            },
+            "start_hour": {
+              "type": "integer",
+              "example": "10",
+              "x-nullable": false
+            },
+            "end_hour": {
+              "type": "integer",
+              "example": "12",
+              "x-nullable": false
+            },
+            "user_id": {
+              "type": "integer",
+              "example": 23,
+              "x-nullable": false
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "off_schedules_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/off_schedule"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "off_schedule_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/off_schedule"
+        }
+      },
+      "required": ["data"]
+    },
     "property_service": {
       "type": "object",
       "properties": {
