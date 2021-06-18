@@ -2,7 +2,7 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @calendar_schedules = CalendarSchedule.where(calendar_schedule_params)
+    @calendar_schedules = user.calendar_schedules.where(calendar_schedule_params)
     respond_with paginate(filtered_collection(@calendar_schedules))
   end
 
@@ -25,7 +25,7 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
   private
 
   def user
-    @user ||= User.find(calendar_schedule_params[:user_id])
+    @user ||= User.find(params[:user_id])
   end
 
   def user_calendar_schedule
@@ -34,7 +34,6 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
 
   def calendar_schedule_params
     params.require(:schedule).permit(
-      :user_id,
       :property_id,
       :start_date,
       :end_date
