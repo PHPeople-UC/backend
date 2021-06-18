@@ -9,6 +9,11 @@ Rails.application.routes.draw do
       end
       devise_for :users, controllers: { sessions: :sessions, registrations: :registrations },
                          path_names: { sign_in: :login }
+
+      resources :users, only: [] do
+        resources :calendar_schedules, only: [:index, :create, :update, :destroy]
+        resources :off_schedules, only: [:index, :create, :update, :destroy]
+      end
     end
   end
   mount Rswag::Api::Engine => '/api-docs'

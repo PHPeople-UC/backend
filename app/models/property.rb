@@ -6,6 +6,8 @@ class Property < ApplicationRecord
   has_many :property_services, dependent: :delete_all, inverse_of: :property
   has_many_attached :images
 
+  has_many :calendar_schedules, dependent: :delete_all, inverse_of: :property
+
   belongs_to :user, inverse_of: :properties
 
   validates :name, presence: true

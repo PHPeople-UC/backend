@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_30_231637) do
+ActiveRecord::Schema.define(version: 2021_06_18_185205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 2021_05_30_231637) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "calendar_schedules", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_id"], name: "index_calendar_schedules_on_property_id"
+    t.index ["user_id"], name: "index_calendar_schedules_on_user_id"
+  end
+
   create_table "geopoints", force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
@@ -69,6 +80,16 @@ ActiveRecord::Schema.define(version: 2021_05_30_231637) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["property_id"], name: "index_geopoints_on_property_id"
+  end
+
+  create_table "off_schedules", force: :cascade do |t|
+    t.integer "day_of_week", default: 0
+    t.integer "start_hour", default: 0
+    t.integer "end_hour", default: 23
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_off_schedules_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -129,7 +150,10 @@ ActiveRecord::Schema.define(version: 2021_05_30_231637) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "calendar_schedules", "properties"
+  add_foreign_key "calendar_schedules", "users"
   add_foreign_key "geopoints", "properties"
+  add_foreign_key "off_schedules", "users"
   add_foreign_key "properties", "users"
   add_foreign_key "property_services", "properties"
 end
