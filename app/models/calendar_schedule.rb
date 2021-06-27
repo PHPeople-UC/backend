@@ -10,13 +10,15 @@ end
 #
 # Table name: calendar_schedules
 #
-#  id          :bigint(8)        not null, primary key
-#  user_id     :bigint(8)        not null
-#  property_id :bigint(8)        not null
-#  start_date  :datetime
-#  end_date    :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :bigint(8)        not null, primary key
+#  user_id        :bigint(8)        not null
+#  property_id    :bigint(8)        not null
+#  start_date     :datetime
+#  end_date       :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  reserver_email :string
+#  reserver_name  :string
 #
 # Indexes
 #

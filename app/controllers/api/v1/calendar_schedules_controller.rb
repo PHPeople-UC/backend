@@ -1,5 +1,5 @@
 class Api::V1::CalendarSchedulesController < Api::V1::BaseController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :create]
 
   def index
     @calendar_schedules = user.calendar_schedules.where(calendar_schedule_params)
@@ -11,7 +11,11 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
   end
 
   def create
+    # skip auth due to post coming from mobile and mobile not having any users
     respond_with user.calendar_schedules.create!(calendar_schedule_params)
+    # mandar mail a reservador
+    # mandar mail a dueño de la propiedad
+    # contenido: hablense
   end
 
   def update
@@ -36,7 +40,9 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
     params.require(:schedule).permit(
       :property_id,
       :start_date,
-      :end_date
+      :end_date,
+      :reserver_email,
+      :reserver_name
     )
   end
 end
