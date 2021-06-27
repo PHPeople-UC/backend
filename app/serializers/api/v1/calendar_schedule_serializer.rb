@@ -3,7 +3,9 @@ class Api::V1::CalendarScheduleSerializer < BaseSerializer
 
   attributes(
     :start_date,
-    :end_date
+    :end_date,
+    :reserver_email,
+    :reserver_name,
   )
 
   attribute :property_id, unless: :with_parent?

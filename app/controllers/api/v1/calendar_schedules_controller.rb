@@ -12,6 +12,9 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
 
   def create
     respond_with user.calendar_schedules.create!(calendar_schedule_params)
+    # mandar mail a reservador
+    # mandar mail a dueño de la propiedad
+    # contenido: hablense
   end
 
   def update
@@ -36,7 +39,9 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
     params.require(:schedule).permit(
       :property_id,
       :start_date,
-      :end_date
+      :end_date,
+      :reserver_email,
+      :reserver_name
     )
   end
 end
