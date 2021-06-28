@@ -1,0 +1,827 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "basePath": "/api/v1",
+  "definitions": {
+    "calendar_schedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "property_service"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "day_of_week": {
+              "type": "integer",
+              "example": 1,
+              "x-nullable": false
+            },
+            "start_hour": {
+              "type": "integer",
+              "example": 21,
+              "x-nullable": false
+            },
+            "end_hour": {
+              "type": "integer",
+              "example": 23,
+              "x-nullable": false
+            },
+            "full_day": {
+              "type": "boolean",
+              "example": false,
+              "x-nullable": true
+            },
+            "user_id": {
+              "type": "integer",
+              "example": 1,
+              "x-nullable": false
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "calendar_schedules_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/calendar_schedule"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "calendar_schedule_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/calendar_schedule"
+        }
+      },
+      "required": ["data"]
+    },
+    "off_schedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "of_schedule"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "day_of_week": {
+              "type": "integer",
+              "example": "0",
+              "x-nullable": false
+            },
+            "start_hour": {
+              "type": "integer",
+              "example": "10",
+              "x-nullable": false
+            },
+            "end_hour": {
+              "type": "integer",
+              "example": "12",
+              "x-nullable": false
+            },
+            "user_id": {
+              "type": "integer",
+              "example": 23,
+              "x-nullable": false
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "off_schedules_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/off_schedule"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "off_schedule_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/off_schedule"
+        }
+      },
+      "required": ["data"]
+    },
+    "property_service": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "property_service"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Some name",
+              "x-nullable": true
+            },
+            "description": {
+              "type": "string",
+              "example": "Some description",
+              "x-nullable": true
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "property_service_in": {
+      "type": "object",
+      "properties": {
+        "property_service": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "some creative name of a property service"
+            },
+            "description": {
+              "type": "string",
+              "example": "some creative description which I dont have"
+            }
+          }
+        }
+      }
+    },
+    "property_services_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/property_service"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "property_service_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/property_service"
+        }
+      },
+      "required": ["data"]
+    },
+    "property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "property"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Property 1"
+            },
+            "commune": {
+              "type": "string",
+              "example": "Santiago"
+            },
+            "description": {
+              "type": "string",
+              "example": "A very nice place"
+            },
+            "active": {
+              "type": "boolean",
+              "example": true
+            },
+            "price": {
+              "type": "float",
+              "example": 1000
+            },
+            "price_unit": {
+              "type": "string",
+              "example": "UF"
+            },
+            "size": {
+              "type": "float",
+              "example": 1000
+            },
+            "size_unit": {
+              "type": "string",
+              "example": "hectare"
+            },
+            "address": {
+              "type": "string",
+              "example": "100 example st"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "properties_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/property"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "property_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/property"
+        }
+      },
+      "required": ["data"]
+    },
+    "geopoint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "1"
+        },
+        "type": {
+          "type": "string",
+          "example": "geopoint"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "float",
+              "example": 6.66,
+              "x-nullable": true
+            },
+            "longitude": {
+              "type": "float",
+              "example": 6.66,
+              "x-nullable": true
+            },
+            "property_id": {
+              "type": "integer",
+              "example": 666,
+              "x-nullable": true
+            }
+          },
+          "required": []
+        }
+      },
+      "required": ["id", "type", "attributes"]
+    },
+    "geopoint_in": {
+      "type": "object",
+      "properties": {
+        "geopoint": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "float", "example": 0.001 },
+            "longitude": { "type": "float", "example": 0.001 }
+          }
+        }
+      }
+    },
+    "geopoints_collection": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/geopoint"
+          }
+        }
+      },
+      "required": ["data"]
+    },
+    "geopoint_resource": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/geopoint"
+        }
+      },
+      "required": ["data"]
+    }
+  },
+  "paths": {
+    "/properties/{:id}/geopoints": {
+      "parameters": [
+        {
+          "name": "id of property",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Geopoints",
+        "description": "Retrieves all the geopoints. This call needs a Bearer Authentication with a user session JWT",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Geopoints retrieved",
+            "schema": {
+              "$ref": "#/definitions/geopoints_collection"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates Geopoint",
+        "description": "Creates the geopoint. This call does not need a Bearer Authentication with a user session JWT",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property_params",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/geopoint_in"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "geopoint created"
+          },
+          "400": {
+            "description": "invalid param"
+          }
+        }
+      }
+    },
+    "/properties/{:id}/geopoints/{id}": {
+      "parameters": [
+        {
+          "name": "id of property",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "id of geopoint",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Geopoint",
+        "description": "Retrieves all the geopoints. This call need a Bearer Authentication with a user session JWT",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "geopoint retrieved",
+            "schema": {
+              "$ref": "#/definitions/geopoint_resource"
+            }
+          },
+          "404": {
+            "description": "invalid geopoint id"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates Geopoint",
+        "description": "Creates the geopoint. This call does not need a Bearer Authentication with a user session JWT",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property_params",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/geopoint_in"
+            },
+            "required": ["id", "type", "attributes"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "geopoint updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes Geopoint",
+        "produces": ["application/json"],
+        "description": "Deletes specific geopoint. This call needs a Bearer Authentication with a user session JWT",
+        "responses": {
+          "204": {
+            "description": "geopoint deleted"
+          },
+          "404": {
+            "description": "geopoint not found"
+          }
+        }
+      }
+    },
+    "/properties": {
+      "get": {
+        "summary": "Retrieves Properties",
+        "description": "Retrieves all the properties.\nYou can pass the URL param 'commune' to recieve back only the properties that belong to that commune. You can also pass multiple communes separated by commas.\nYou can pass the URL param 'deep' set to true to receive a nested response with each propertie's geopoints and services.",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "commune",
+            "in": "query",
+            "example": "Santiago",
+            "description": "Used to filter by commune. You can filter by multiple communes separating them by commas"
+          },
+          {
+            "name": "deep",
+            "in": "query",
+            "example": "true",
+            "description": "If this params is present, you receiver geopoints & services in the answer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Properties retrieved",
+            "schema": {
+              "$ref": "#/definitions/properties_collection"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates Property",
+        "description": "Creates Property. This call need a Bearer Authentication with a user session JWT",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property_params",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "property": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Property 1"
+                    },
+                    "commune": {
+                      "type": "string",
+                      "example": "Santiago"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "A very nice place"
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "price": {
+                      "type": "float",
+                      "example": 1000
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "example": "UF"
+                    },
+                    "size": {
+                      "type": "float",
+                      "example": 1000
+                    },
+                    "size_unit": {
+                      "type": "string",
+                      "example": "hectare"
+                    },
+                    "address": {
+                      "type": "string",
+                      "example": "100 example st"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "commune",
+                "description",
+                "price",
+                "price_unit",
+                "size",
+                "size_unit",
+                "address"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "property created"
+          }
+        }
+      }
+    },
+    "/properties/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Property",
+        "description": "You can pass the URL param 'deep' set to true to receive a nested response with each propertie's geopoints and services.",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "deep",
+            "in": "query",
+            "example": "true",
+            "description": "If this params is present, you receiver geopoints & services in the answer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "property retrieved",
+            "schema": {
+              "$ref": "#/definitions/property_resource"
+            }
+          },
+          "404": {
+            "description": "invalid property id"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates Property",
+        "description": "Updates Property. This call need a Bearer Authentication with a user session JWT",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property",
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "property updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes Property",
+        "produces": ["application/json"],
+        "description": "Deletes specific property. This call need a Bearer Authentication with a user session JWT",
+        "responses": {
+          "204": {
+            "description": "property deleted"
+          },
+          "404": {
+            "description": "property not found"
+          }
+        }
+      }
+    },
+    "/properties/{:id}/property_services": {
+      "parameters": [
+        {
+          "name": "id of property",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Property Services",
+        "description": "Retrieves all the property_services. This call does not need a Bearer Authentication with a user session JWT",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Property Services retrieved",
+            "schema": {
+              "$ref": "#/definitions/property_services_collection"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates Property Service",
+        "description": "Creates Property Service. This call needs a Bearer Authentication with a user session JWT",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property_service",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/property_service_in"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "property_service created"
+          }
+        }
+      }
+    },
+    "/properties/{:id}/property_services/{id}": {
+      "parameters": [
+        {
+          "name": "id of property",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "id of property service",
+          "in": "path",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Retrieves Property Service",
+        "description": "Retrieves a specific property service. This call does not need a Bearer Authentication with a user session JWT",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "property_service retrieved",
+            "schema": {
+              "$ref": "#/definitions/property_service_resource"
+            }
+          },
+          "404": {
+            "description": "invalid property_service id"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates Property Service",
+        "description": "Updates Property Service. This call needs a Bearer Authentication with a user session JWT",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "property_service",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/property_service_in"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "property_service updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes Property Service",
+        "produces": ["application/json"],
+        "description": "Deletes specific property_service. This call needs a Bearer Authentication with a user session JWT",
+        "responses": {
+          "204": {
+            "description": "property_service deleted"
+          },
+          "404": {
+            "description": "property_service not found"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Sign up",
+        "description": "Sign up a new user",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "registration_params",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "jero@example.com"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "jero"
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "example": "salazar"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "123456"
+                    },
+                    "password_confirmation": {
+                      "type": "string",
+                      "example": "123456"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "email",
+                "name",
+                "last_name",
+                "password",
+                "password_confirmation"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "user created"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "User login",
+        "description": "Login user. This method returns the user info + a JWT for authentication",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "session_params",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "jero@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123456"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "logged in"
+          }
+        }
+      }
+    }
+  }
+}
