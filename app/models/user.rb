@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_one_attached :avatar
 
   validates :name, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z]+\z/ }
   validates :last_name, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z]+\z/ }
@@ -20,6 +21,12 @@ class User < ApplicationRecord
     JWT.encode({ id: id,
                  exp: 60.days.from_now.to_i },
                Rails.application.secrets.secret_key_base)
+  end
+
+  def avatar_url
+    if avatar.attached?
+      avatar.blob.service_url
+    end
   end
 end
 

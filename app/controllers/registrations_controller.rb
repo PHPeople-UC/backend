@@ -1,8 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
-    @user = User.new(sign_up_params)
+    avatar = params[:user][:avatar]
+    params = sign_up_params
+    @user = User.new(params)
+    @user.avatar.attach(avatar)
     if @user.save
-      render json: @user
+      render json: @user.as_json(methods: :avatar_url)
     else
       render json: { errors: @user.errors }
     end
