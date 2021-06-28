@@ -15,7 +15,11 @@ class Api::V1::PropertiesController < Api::V1::BaseController
   end
 
   def create
-    respond_with current_user.properties.create!(property_params)
+    imagenes = params.require(:property)[:images]
+    img = imagenes.split(" ")
+    property = current_user.properties.create!(property_params)
+    property.images.attach(img)
+    respond_with property
   end
 
   def update

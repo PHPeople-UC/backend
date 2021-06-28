@@ -14,6 +14,6 @@ API_V1 = {
     property_resource: PROPERTY_RESOURCE_SCHEMA,
     geopoint: GEOPOINT_SCHEMA,
     geopoints_collection: GEOPOINTS_COLLECTION_SCHEMA,
-    geopoint_resource: GEOPOINT_RESOURCE_SCHEMA,
+    geopoint_resource: GEOPOINT_RESOURCE_SCHEMA
   }
 }

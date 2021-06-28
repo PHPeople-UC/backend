@@ -10,9 +10,16 @@ class UserSerializer < BaseSerializer
   )
 
   attribute :generate_jwt, if: :with_token?
+  attribute :avatar
 
   def roles
     object.roles.map(&:name)
+  end
+
+  def avatar
+    if object.avatar.attached?
+      { avatar: object.avatar_url }
+    end
   end
 
   def with_token?

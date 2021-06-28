@@ -13,6 +13,7 @@ class Api::V1::PropertySerializer < BaseSerializer
   attribute :price
   attribute :geopoints, if: :deep?
   attribute :property_services, if: :deep?
+  attribute :blobs_url
 
   def size
     { value: object.size, unit: object.size_unit }
@@ -34,6 +35,16 @@ class Api::V1::PropertySerializer < BaseSerializer
       serializer = Api::V1::PropertyServiceSerializer.new(property_service, with_parent: true)
       puts_association(serializer)
     end
+  end
+
+  def blobs_url
+    urls = []
+    if object.images.attached?
+      object.images.blobs.each do |blob|
+        urls.append(blob.service_url)
+      end
+    end
+    { blobs: urls }
   end
 
   def owner
