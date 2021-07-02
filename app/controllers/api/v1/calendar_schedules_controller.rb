@@ -2,7 +2,7 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [:index, :show, :create]
 
   def index
-    @calendar_schedules = user.calendar_schedules.where(calendar_schedule_params)
+    @calendar_schedules = user.calendar_schedules
     respond_with paginate(filtered_collection(@calendar_schedules))
   end
 
