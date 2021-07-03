@@ -538,6 +538,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.2)
   sass-rails (>= 6)
   send_grid_mailer
+  sendgrid-ruby
   sentry-raven
   shoulda-matchers
   sidekiq
