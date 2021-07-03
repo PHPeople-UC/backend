@@ -30,9 +30,6 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)
     respond_with user.calendar_schedules.create!(calendar_schedule_params)
-    # mandar mail a reservador
-    # mandar mail a dueño de la propiedad
-    # contenido: hablense
   end
 
   def update
