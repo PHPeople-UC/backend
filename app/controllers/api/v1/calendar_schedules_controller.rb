@@ -13,10 +13,9 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
   def create
     reserver_email = params[:schedule][:reserver_email]
     propietary_email = Property.find(calendar_schedule_params[:property_id]).user.email
-    puts propietary_email.inspect
     property_name = Property.find(calendar_schedule_params[:property_id])[:name]
     property_direction = Property.find(calendar_schedule_params[:property_id])[:address]
-    from = SendGrid::Email.new(email: 'no-reply@phpeople.com')
+    from = SendGrid::Email.new(email: 'phpeopleuc@gmail.com')
     subject = 'Agenda hora propiedad'
     to = SendGrid::Email.new(email: reserver_email)
     content = SendGrid::Content.new(type: 'text/plain', value: "Estimado \n Le informamos que se ha agendado exitosamente la hora para ver la propiedad #{property_name}, en la direccion #{property_direction}, el email del dueño de la publicación es #{propietary_email}, para que lo contactes a la brevedad \n Saludos PHpeople")
