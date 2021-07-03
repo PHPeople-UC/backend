@@ -12,10 +12,11 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
 
   def create
     reserver_email = params[:schedule][:reserver_email]
-    propietary_email = User.find(id: calendar_schedule_params[:property_id].user_id).email
+    propietary_email = Property.find(calendar_schedule_params[:property_id]).user.email
+    puts propietary_email.inspect
     property_name = Property.find(calendar_schedule_params[:property_id])[:name]
     property_direction = Property.find(calendar_schedule_params[:property_id])[:address]
-    from = SendGrid::Email.new(email: 'vamosnaranjosaganar@gmail.com')
+    from = SendGrid::Email.new(email: 'no-reply@phpeople.com')
     subject = 'Agenda hora propiedad'
     to = SendGrid::Email.new(email: reserver_email)
     content = SendGrid::Content.new(type: 'text/plain', value: "Estimado \n Le informamos que se ha agendado exitosamente la hora para ver la propiedad #{property_name}, en la direccion #{property_direction}, el email del dueño de la publicación es #{propietary_email}, para que lo contactes a la brevedad \n Saludos PHpeople")
@@ -23,7 +24,7 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)    
     to = SendGrid::Email.new(email: propietary_email)
-    content = SendGrid::Content.new(type: 'text/plain', value: "Estimado \n Le informamos que se ha agendado exitosamente la hora para ver su propiedad #{property_name}, en la direccion #{property_direction}, el email del interesado  es #{reerver_email}, para que lo contactes a la brevedad \n Saludos PHpeople")
+    content = SendGrid::Content.new(type: 'text/plain', value: "Estimado \n Le informamos que se ha agendado exitosamente la hora para ver su propiedad #{property_name}, en la direccion #{property_direction}, el email del interesado  es #{reserver_email}, para que lo contactes a la brevedad \n Saludos PHpeople")
     mail = SendGrid::Mail.new(from, subject, to, content)
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)
