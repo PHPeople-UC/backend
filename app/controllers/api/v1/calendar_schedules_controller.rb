@@ -11,9 +11,8 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
   end
 
   def create
-    # skip auth due to post coming from mobile and mobile not having any users
     reserver_email = params[:schedule][:reserver_email]
-    propietary_email = User.find(Property.find(calendar_schedule_params[:property_id])[:user_id])[:email]
+    propietary_email = User.find(id: calendar_schedule_params[:property_id].user_id).email
     property_name = Property.find(calendar_schedule_params[:property_id])[:name]
     property_direction = Property.find(calendar_schedule_params[:property_id])[:address]
     from = SendGrid::Email.new(email: 'vamosnaranjosaganar@gmail.com')
@@ -21,19 +20,15 @@ class Api::V1::CalendarSchedulesController < Api::V1::BaseController
     to = SendGrid::Email.new(email: reserver_email)
     content = SendGrid::Content.new(type: 'text/plain', value: "Estimado \n Le informamos que se ha agendado exitosamente la hora para ver la propiedad #{property_name}, en la direccion #{property_direction}, el email del dueño de la publicación es #{propietary_email}, para que lo contactes a la brevedad \n Saludos PHpeople")
     mail = SendGrid::Mail.new(from, subject, to, content)
-    # puts JSON.pretty_generate(mail.to_json)
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)    
     to = SendGrid::Email.new(email: propietary_email)
     content = SendGrid::Content.new(type: 'text/plain', value: "Estimado \n Le informamos que se ha agendado exitosamente la hora para ver su propiedad #{property_name}, en la direccion #{property_direction}, el email del interesado  es #{reerver_email}, para que lo contactes a la brevedad \n Saludos PHpeople")
     mail = SendGrid::Mail.new(from, subject, to, content)
-    # puts JSON.pretty_generate(mail.to_json)
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     response = sg.client.mail._('send').post(request_body: mail.to_json)
     respond_with user.calendar_schedules.create!(calendar_schedule_params)
-    # mandar mail a reservador
-    # mandar mail a dueño de la propiedad
-    # contenido: hablense
+
   end
 
   def update
